@@ -37,3 +37,46 @@ void swap(int x, int y)
 	arr[x] = arr[y];
 	arr[y] = temp;
 }
+
+void q_short(int low, int high)
+{
+	int pivot, i, j;
+	if (low > high)						//langkah 1
+		return;
+
+	//partition the list isnto two parts
+	//one containing element less that or equal to pivot
+	//outher containing element
+
+	pivot = arr[low];					//langkah 2
+
+	i = low + 1;						//langkah 3
+	j = high;							//langkah 4
+
+	while (i <= j) 
+	{
+		//search for an element greather than pivot
+		while ((arr[i] <= pivot) && (i <= high))
+		{
+			i++;
+			cmp_count++;
+		}
+		cmp_count++;
+
+		//search for an element less than or equal to pivot
+		while ((arr[j] > pivot) && (j >= low))
+		{
+			j--;
+			cmp_count++;
+		}
+		cmp_count++;
+		//if the greater element is on the left the element
+		if (i < j)
+		{
+			//swap the element at index i with the eleement at index j 
+			swap(i, j);
+			mov_count++;
+		}
+	}
+}
+
